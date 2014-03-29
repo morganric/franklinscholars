@@ -38,6 +38,7 @@ GEM
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     builder (3.2.2)
+    cancan (1.6.10)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.2.2)
+  cancan
   coffee-rails (~> 4.0.0)
   devise
   guard-bundler

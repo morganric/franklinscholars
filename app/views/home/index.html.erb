@@ -1,4 +1,17 @@
-<h3>Home</h3>
+<h1>Welcome <%= current_user.name %></h1>
+
+<% if current_user.role == 'admin' %>
+
+<h2>Admin Dashboard</h2>
+
+<h3>Teachers</h3>
+
 <% @users.each do |user| %>
   <p>User: <%=link_to user.email, user %></p>
+<% end %>
+
+<% elsif current_user.role == 'teacher'  %>
+
+<h2>Your Teacher Dashboard</h2>
+
 <% end %>

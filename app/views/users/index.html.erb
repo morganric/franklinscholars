@@ -2,7 +2,14 @@
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <%= link_to user.email, user %> signed up <%= user.created_at.to_date %>
+      <%= link_to user.email, user %> signed up <%= user.created_at.to_date %> <%#= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+
+        <%= form_for(user) do |f| %>
+		    <%#= f.select(:role, User.roles.keys.map {|role| [role,role]}) %>
+		    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+		    <%= f.submit 'Change Role', :class => 'button-xs' %>
+		  <% end %>
+
     </li>
   <% end %>
 </ul>
