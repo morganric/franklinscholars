@@ -1,0 +1,19 @@
+<%= simple_form_for(@student) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :male %>
+    <%= f.input :image %>
+    <%= f.input :mentor %>
+    <%= f.hidden_field :user_id, :value => current_user.id%>
+    <%= f.input :dob,  as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12, discard_day: false,
+                              order: [:day, :month, :year] %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,17 +1,72 @@
-<h1>Welcome <%= current_user.name %></h1>
+
 
 <% if current_user.role == 'admin' %>
 
-<h2>Admin Dashboard</h2>
+<h1><%= current_user.name %>'s Admin Dashboard</h1>
 
-<h3>Teachers</h3>
+	<p class="well">
 
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.email, user %></p>
-<% end %>
+		<h3>Teachers</h3>
+
+		<% @users.each do |user| %>
+		  <>User: <%=link_to user.email, user %></p>
+		<% end %>
+
+		<h3>Schools</h3>
+
+		<% @schools.each do |school| %>
+		  <p>School: <%=link_to school.name, school %></p>
+		<% end %>
+
+	</p>
+
 
 <% elsif current_user.role == 'teacher'  %>
 
-<h2>Your Teacher Dashboard</h2>
+<h1><%= current_user.name %>'s Dashboard</h1>
+
+<%= link_to 'New Student', new_student_path, :class => 'btn pull-right' %>
+<h3>Students</h3>
+
+
+	<ol class="well">
+		<% @students.each do |student| %>
+			<li>
+				<h4>
+					<%= link_to student.first_name, student %>
+					<small>(
+						<% if student.mentor == true %>
+						  <strong>Mentor</strong>
+						<% else %>
+						  <strong>Mentee</strong>
+						<% end %>
+
+
+					)</small>
+				</h4>
+
+			</li>
+		<% end %>
+	</ol>
+
+
+<hr/>
+
+<%= link_to 'New Session', new_session_path, :class => 'btn pull-right' %>
+<h3>Sessions</h3>
+
+
+<ol class="well">
+	<% current_user.sessions.each do |session| %>
+		<li>
+			<h4>
+				<%= link_to session.theme, session %>
+			</h4>
+
+		</li>
+	<% end %>
+</ol>
+
+</p>
 
 <% end %>

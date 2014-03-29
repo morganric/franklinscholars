@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @student.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @student.last_name %>
+</p>
+
+
+<p>
+<% if @student.male == true %>
+  <strong>Male</strong>
+<% else %>
+  <strong>Female</strong>
+<% end %>
+</p>
+
+<p>
+  <%= image_tag @student.image %>
+</p>
+
+<p>
+<% if @student.mentor == true %>
+  <strong>Mentor</strong>
+<% else %>
+  <strong>Mentee</strong>
+<% end %>
+</p>
+
+
+<p>
+  <strong>Teacher:</strong>
+  <%= link_to @teacher.name, user_path(@teacher) %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @student.dob %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

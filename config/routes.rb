@@ -1,5 +1,9 @@
 Franklinscholars::Application.routes.draw do
   
+  resources :sessions
+
+  resources :students
+
   resources :schools
 
   authenticated :user do

@@ -14,11 +14,11 @@
  *= require_self
  */
 
-ul {
-	padding: 0px;
+ul, ol.well{
+	padding-left: 40px;
 	margin: 0px;
 }
 
-li {
+ul li {
 	list-style: none;
 }

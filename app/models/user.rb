@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   ROLES = %w[admin teacher]
 
   belongs_to :school
+  has_many :sessions
 
 end

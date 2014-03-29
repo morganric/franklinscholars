@@ -1,0 +1,80 @@
+<h1>
+  <%= @session.theme %> <small>by <%= @teacher.name %></small>
+</h1>
+
+
+<p class="well">
+  <strong>on:</strong>
+  <%= @session.date %>
+  <br/>
+  <strong>Location:</strong>
+  <%= @session.location %>
+  <br/>
+  <strong>Resources:</strong>
+  <%= @session.resources %>
+  <br/>
+  <strong>Activities:</strong>
+  <%= @session.activities %>
+
+  <p class="pull-right">
+    <%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>
+
+  </p>
+</p>
+
+<h3>Students</h3>
+
+<section class="row">
+  <div class="span6">
+      <h4>Mentors</h4>
+      <ul>
+        <% @mentors.each do |mentor| %>
+          <li> 
+            <%= image_tag mentor.image, :width => '50px' %>
+            <%= link_to mentor.first_name, mentor %>
+            </li>
+        <% end %>
+        </li>
+      </ul>
+
+  </div>
+
+  <div class="span6">
+      <h4>Mentees</h4>
+
+      <ul>
+        <% @mentees.each do |mentee| %>
+          <li> 
+            <%= image_tag mentee.image,  :width => '50px' %>
+            <%= link_to mentee.first_name, mentee %>
+            </li>
+        <% end %>
+        </li>
+      </ul>
+
+
+  </div>
+</section>
+
+
+
+
+<hr/>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @session.rating %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @session.comment %>
+</p>
+
+
+<p>
+  <strong>Closed?</strong>
+  <%= @session.closed %>
+</p>
+
