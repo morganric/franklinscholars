@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
+  # after_action :add_students, only: [:create]
 
   # GET /sessions
   # GET /sessions.json
@@ -75,5 +76,12 @@ class SessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
       params.require(:session).permit(:theme, :resources, :rating, :activities, :comment, :location, :user_id, :date, :closed)
+    end
+
+     def add_students
+      current_user.students.each do |student|
+        ss = StudentSession.new(:student_id => student.id, :session_id => @session_id)
+        ss.save
+      end
     end
 end

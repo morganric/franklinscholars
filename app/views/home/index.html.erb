@@ -4,68 +4,102 @@
 
 <h1><%= current_user.name %>'s Admin Dashboard</h1>
 
-	<p class="well">
+	<div class="well">
 
 		<h3>Teachers</h3>
 
 		<% @users.each do |user| %>
-		  <>User: <%=link_to user.email, user %></p>
+			<% unless user.role == 'admin' %>
+		 	<%=link_to user.name, user %></p>
+		 	<% end %>
 		<% end %>
 
 		<h3>Schools</h3>
 
 		<% @schools.each do |school| %>
-		  <p>School: <%=link_to school.name, school %></p>
+		  <p><%=link_to school.name, school %></p>
 		<% end %>
 
-	</p>
+	</div>
 
 
 <% elsif current_user.role == 'teacher'  %>
 
 <h1><%= current_user.name %>'s Dashboard</h1>
-
 <%= link_to 'New Student', new_student_path, :class => 'btn pull-right' %>
-<h3>Students</h3>
+<h2>Students</h2>
 
 
-	<ol class="well">
-		<% @students.each do |student| %>
+<div class="well clearfix" >
+	<div class="span4">
+		<h3>Mentors</h3>
+		<ol class="">
+
+			<% @mentors.each do |mentor| %>
+				<li>
+					<%= image_tag mentor.image, :width => '50px' %>
+					<%= link_to mentor.first_name, mentor %>
+				</li>
+				<br/>
+			<% end %>
+		</ol>
+
+	</div>
+	<div class="span6 pull-right">
+		<h3>Mentees</h3>
+			<ol class="">
+
+		<% @mentees.each do |mentee| %>
 			<li>
-				<h4>
-					<%= link_to student.first_name, student %>
-					<small>(
-						<% if student.mentor == true %>
-						  <strong>Mentor</strong>
-						<% else %>
-						  <strong>Mentee</strong>
-						<% end %>
-
-
-					)</small>
-				</h4>
+				<%= image_tag mentee.image, :width => '50px' %>
+				<%= link_to mentee.first_name , mentee %>
+			
 
 			</li>
+			</br>
 		<% end %>
 	</ol>
 
+
+	</div>
+
+</div>
 
 <hr/>
 
 <%= link_to 'New Session', new_session_path, :class => 'btn pull-right' %>
 <h3>Sessions</h3>
 
+<div class="well clearfix" >
+	<div class="span4">
+		<h3>Upcoming</h3>
 
-<ol class="well">
-	<% current_user.sessions.each do |session| %>
-		<li>
-			<h4>
-				<%= link_to session.theme, session %>
-			</h4>
+			<ol class="">
+				<% @upcoming_sessions.each do |session| %>
+					<li>
+						<h4>
+							<%= link_to session.theme, session %>
+						</h4>
 
-		</li>
-	<% end %>
-</ol>
+					</li>
+				<% end %>
+			</ol>
+	</div>
+	<div class="span6 pull-right">
+			<h3>Past</h3>
+		<ol class="">
+				<% @past_sessions.each do |session| %>
+					<li>
+						<h4>
+							<%= link_to session.theme, session %>
+						</h4>
+
+					</li>
+				<% end %>
+			</ol>
+	</div>
+</div>
+
 
 </p>
 
